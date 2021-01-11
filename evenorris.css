@@ -1,0 +1,8 @@
+#li {color: blue;}
+li.low i {color: red; font-size: 80%;}
+li.high i {color: green; font-size: 120%;}
+inline.sql {color: blue;}
+
+body {
+	background-color: #ffdab9;
+}

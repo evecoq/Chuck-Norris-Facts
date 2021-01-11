@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>
+	.box{
+		display: flex;
+	}
+        .div.absolute {
+	    position: absolute;
+	    width: 600px;
+	    height: 200px;
+            margin-bottom: 30px;
+            padding-left: 500px;
+	    border-radius: 5px;
+	    background-color: ##45a049;
+        }
+	.title {
+	color: #f8f2ff;
+	}
+	
+	input[type=submit] {
+	    width:30%;
+	    background-color: #ffdab9;
+	    color: black;
+	    padding: 10px 10px;
+	    border: none;
+	    border-radius: 4px,
+	    cursor: pointer;
+	    animation:loop 2s;
+	}
+
+        .rate-rectangle,.groups-rectangle {
+            width: -moz-fit-content;
+	    width: fit-content;
+            border-radius: 10px;
+            margin: 30px 0;
+	    background-color: #f8f2ff;
+	    padding: 20px 50px;
+	    opacity: 0.8;
+	    line-break: anywhere;
+	}
+	form{
+		margin-left: 100px;
+	}
+	.groups-rectanle{
+		margin-bottom: 50px;
+	}
+        
+        body {
+            background-image: url("https://cutt.ly/JhLDHGK");
+	}
+	.inpit {
+	    width: 100%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    box-sizing: border-box;
+	}
+    </style>
+</head>
+<body>
+    <div class="title">
+	<h4>Jokes? Facts! Search here...</h4>
+    </div>
+    <div class="box">
+	    <form method="post" action="evenorris.py">
+		<div class="search">
+		    <label for="Nom">Mot clé:</label>
+		    <br><input type="text" name="motcle" id="motcle" placeholder="On cherche quel mot dans les faits?" size="30" maxlenght="30" /></br>
+		</div>
+		<div class = "rate-rectangle">
+		    <p>Note range</p>
+		    <input type="radio" name="rate" value="bas"/><label for="bas">Oui, je veux des blagues nulles!</label></br>
+		    <input type="radio" name="rate" value="medium"/><label for="medium">Et si ces blagues meritent une meilleure note?</label></br>
+		    <input type="radio" name="rate" value="haut"/><label for="haut">On verra si ces vraiment aussi drôle ^^</label></br>
+		    <input type="radio" name="rate" value="tout"/><label for="tout">Peu importe, je veux tout!</label></br>
+		</div>
+		<div class = "rate-rectangle">
+		    <p>Nombre de votes?</p>
+		    <input type="radio" name="votes" value="min"/> <label for="min">1-100</label></br>
+		    <input type="radio" name="votes" value="med"/> <label for="med">100-1000</label></br>
+		    <input type="radio" name="votes" value="more"/> <label for="more">1000 and much more</label></br>
+		    <input type="radio" name="votes" value="all"/> <label for="all">Mais pourquoi choisir?</label></br>
+		</div>
+		<div class = "rate-rectangle">
+		    <label for="number">Combien (de 1 à 50)?</label>
+		    <br><input type="range" name="number" min="1" max="50" step="1"/></br>
+		</div>
+		<input type="submit" value="Envoyer" />
+	    </form>
+	    <form method="post" action="evenorrisgroup.py">
+		<div class = "groups-rectangle">
+		    <label for="groups">Les faits par les thémes</label><br/>
+		    <select name="groups">       
+			<option value="god">Chuck IS the God. Proven</option>
+			<option value="food">Chuck and food</option>
+			<option value="chuck">Just... Chuck. Normal</option>
+			<option value="love">Loving Chuck :3</option>
+			<option value="pets">Chuck and furry friends</option>
+			<option value="sleep">Chuck and sleep (not needed, see why)</option>
+			<option value="viril">Alpha Chuck</option>
+			<option value="virus">Chuck against illness</option>
+			<option value="woman">Chuck and women</option>
+			</optgroup>
+		   </select>
+		</div>
+		<input type="submit" value="Envoyer" /> 
+		
+	    </form>
+	</div>
+</body>
+</html>
+
+
