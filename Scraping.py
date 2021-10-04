@@ -1,22 +1,26 @@
+#Libraries
 import requests, psycopg2, config
 import re
 from time import sleep
 from bs4 import BeautifulSoup
 
-conn = psycopg2.connect(database="bdd_ecoquelet",
+#Connection to database using config.py file
+conn = psycopg2.connect(database="database",
 user=config.user,
 password=config.password,
-host='127.0.0.1') 
+host='host') 
 
 cur = conn.cursor()
 
+#The function for insertion of the scraped data into tables. 
 def useInfo(id, joke, rate, votes):
     print("%4d : %4d %.2f %s" % (id, votes, rate, joke))
     cur.execute("""INSERT INTO public."Jokes" VALUES (%s, %s) ON CONFLICT (id) DO NOTHING;""",
         (id, joke)) 
     cur.execute("""INSERT INTO public."Vote" VALUES (NOW()::Date, %s, %s, %s) ON CONFLICT DO NOTHING;""", 
     (id, rate, votes)) 
-    
+
+#The function for getting the last page number so we can scrap all the pages in automatic manner
 def recupPage (page):
     url = f"https://chucknorrisfacts.net/facts.php?page={page}"
     print("Recupération de", url)
