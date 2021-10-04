@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-import psycopg2, config # import librairies
+import psycopg2, config 
 import cgi, cgitb
-#~ import pandas
+
 cgitb.enable()
 
 print("""Content-type: text/html; charset=utf-8
@@ -11,13 +11,14 @@ print("""Content-type: text/html; charset=utf-8
 <html>
   <head>
     <title>Exemple CGI</title>
-    <link rel="stylesheet" href="evenorris.css"/>
+    <link rel="stylesheet" href="chuck_norris.css"/>
   </head>
   <body>""")
 
 print("<h2>Facts. Certainly</h2>")
 
-form = cgi.FieldStorage() # récupération des info de paramètres
+#Getting the search parameters form
+form = cgi.FieldStorage()
 
 motcle = form["motcle"].value
 number = form["number"].value
@@ -29,9 +30,11 @@ print("//number= ", number)
 print("//rate=", rate)
 print("//votes=", votes)
 
-conn = psycopg2.connect(database="bdd_ecoquelet", user=config.user, password=config.password, host='localhost') # connexion
-cur = conn.cursor() # session
+#Database connection with a config.py file
+conn = psycopg2.connect(database=config.database, user=config.user, password=config.password, host='localhost')
+cur = conn.cursor()
 
+#Queries that gets the facts from database depending on the choosen parameters. Chuckview is the view that unies the both of tables in one.
 if rate == 'bas' and votes == 'min':    
 	sql = f"""SELECT * FROM "chuckview" WHERE joke LIKE '%{motcle}%' AND rate >= 1 AND rate <=2 AND votes >= 0 AND votes <= 100 LIMIT {number};"""
 	#print(f"<p>Requete SQL: <inline class='sql'>{sql}</inline></p>")
@@ -81,8 +84,9 @@ elif rate == 'tout' and votes == 'all':
 	sql = f"""SELECT * FROM "chuckview" WHERE joke LIKE '%{motcle}%' LIMIT {number};"""
 	#print(f"<p>Requete SQL: <inline class='sql'>{sql}</inline></p>")
 
+#getting the asked data
 cur.execute(sql) # requête SELECT
-for data in cur.fetchall() : # récupération des lignes
+for data in cur.fetchall() : 
  	print("<li>%s :%s</li>" % (data[0], data[1]))
 
 
